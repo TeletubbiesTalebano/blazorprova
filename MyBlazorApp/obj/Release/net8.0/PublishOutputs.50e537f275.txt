@@ -1,0 +1,2 @@
+C:\Users\A905apulia\Desktop\c#\blazor\myblazorapp\publish\emcc-props.json
+C:\Users\A905apulia\Desktop\c#\blazor\myblazorapp\publish\web.config
