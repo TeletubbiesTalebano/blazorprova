@@ -3,7 +3,7 @@ name: Deploy Blazor App to GitHub Pages
 # Definisce l'evento che attiva il workflow.
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 # Permessi necessari per GitHub Pages
 permissions:
