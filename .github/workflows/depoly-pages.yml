@@ -24,17 +24,17 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Publish .NET app
-        working-directory: ./MyBlazor app
+        working-directory: ./MyBlazorApp
         run: dotnet publish MyBlazorApp.csproj -c Release -o publish
 
       - name: Add 404.html for client-side routing
-        working-directory: ./MyBlazor app
+        working-directory: ./MyBlazorApp
         run: cp publish/wwwroot/index.html publish/wwwroot/404.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./MyBlazor app/publish/wwwroot
+          path: ./MyBlazorApp/publish/wwwroot
 
   deploy:
     runs-on: ubuntu-latest
