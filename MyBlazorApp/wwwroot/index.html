@@ -15,7 +15,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="#">BlazorProva</a>
+            <a class="navbar-brand fw-bold" href="#">BlazorProva</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -31,39 +31,45 @@
         </div>
     </nav>
 
-    <div class="hero">
+    <section class="py-5 text-center text-white" style="background: linear-gradient(90deg, #4f8cff 0%, #6fd6ff 100%);">
         <div class="container">
-            <h1>Benvenuto su BlazorProva</h1>
-            <p>Un'applicazione Blazor WebAssembly moderna, veloce e responsive.<br />Personalizza il frontend come vuoi!</p>
+            <h1 class="display-4 fw-bold">Benvenuto su BlazorProva</h1>
+            <p class="lead mb-4">Un'applicazione Blazor WebAssembly moderna, veloce e responsive.<br />Personalizza il frontend come vuoi!</p>
             <a href="counter" class="btn btn-light btn-lg me-2">Prova il Contatore</a>
             <a href="weather" class="btn btn-outline-light btn-lg">Guarda il Meteo</a>
         </div>
-    </div>
+    </section>
 
-    <div class="container features">
-        <div class="row">
+    <div class="container my-5">
+        <div class="row g-4">
             <div class="col-md-4">
-                <div class="feature-card">
-                    <h5>Frontend Moderno</h5>
-                    <p>Design pulito e responsive con Bootstrap 5 e personalizzazioni CSS.</p>
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Frontend Moderno</h5>
+                        <p class="card-text">Design pulito e responsive con Bootstrap 5 e personalizzazioni CSS.</p>
+                    </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="feature-card">
-                    <h5>Componenti Blazor</h5>
-                    <p>Componenti riutilizzabili e routing integrato per una SPA completa.</p>
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Componenti Blazor</h5>
+                        <p class="card-text">Componenti riutilizzabili e routing integrato per una SPA completa.</p>
+                    </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="feature-card">
-                    <h5>Deploy su GitHub Pages</h5>
-                    <p>Distribuzione automatica e gratuita del sito tramite GitHub Actions.</p>
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Deploy su GitHub Pages</h5>
+                        <p class="card-text">Distribuzione automatica e gratuita del sito tramite GitHub Actions.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer class="footer">
+    <footer class="footer bg-dark text-white text-center py-3 mt-5">
         <div>© 2025 BlazorProva. Powered by Blazor WebAssembly & GitHub Pages.</div>
     </footer>
 
@@ -73,6 +79,7 @@
         <a href="." class="reload">Ricarica</a>
         <span class="dismiss">🗙</span>
     </div>
+    <script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="_framework/blazor.webassembly.js"></script>
 </body>
 
