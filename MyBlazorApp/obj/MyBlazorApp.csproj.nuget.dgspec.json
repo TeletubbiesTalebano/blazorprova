@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\A905apulia\\Desktop\\c#\\blazor\\myblazorapp\\MyBlazorApp.csproj": {}
+    "C:\\Users\\A905apulia\\Desktop\\c#\\blazor\\MyBlazorApp\\MyBlazorApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\A905apulia\\Desktop\\c#\\blazor\\myblazorapp\\MyBlazorApp.csproj": {
+    "C:\\Users\\A905apulia\\Desktop\\c#\\blazor\\MyBlazorApp\\MyBlazorApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\A905apulia\\Desktop\\c#\\blazor\\myblazorapp\\MyBlazorApp.csproj",
+        "projectUniqueName": "C:\\Users\\A905apulia\\Desktop\\c#\\blazor\\MyBlazorApp\\MyBlazorApp.csproj",
         "projectName": "MyBlazorApp",
-        "projectPath": "C:\\Users\\A905apulia\\Desktop\\c#\\blazor\\myblazorapp\\MyBlazorApp.csproj",
+        "projectPath": "C:\\Users\\A905apulia\\Desktop\\c#\\blazor\\MyBlazorApp\\MyBlazorApp.csproj",
         "packagesPath": "C:\\Users\\A905apulia\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\A905apulia\\Desktop\\c#\\blazor\\myblazorapp\\obj\\",
+        "outputPath": "C:\\Users\\A905apulia\\Desktop\\c#\\blazor\\MyBlazorApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\A905apulia\\AppData\\Roaming\\NuGet\\NuGet.Config"
