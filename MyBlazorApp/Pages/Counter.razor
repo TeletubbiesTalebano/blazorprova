@@ -1,22 +1,57 @@
-﻿@page "/counter"
+﻿@page "/weather"
+@inject HttpClient Http
 
-<PageTitle>Counter</PageTitle>
+<PageTitle>Meteo</PageTitle>
 
-<h1>Counter</h1>
+<h1>Meteo</h1>
 
-<p role="status">Current count: @currentCount</p>
+<p>Questo componente dimostra come recuperare dati dal server.</p>
 
-<label>Increment value:</label>
-<input type="number" @bind="incrementValue" />
-
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+@if (previsioni == null)
+{
+    <p><em>Caricamento in corso...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th aria-label="Temperatura in gradi Celsius">Temp. (C)</th>
+                <th aria-label="Temperatura in gradi Fahrenheit">Temp. (F)</th>
+                <th>Descrizione</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var previsione in previsioni)
+            {
+                <tr>
+                    <td>@previsione.Data.ToShortDateString()</td>
+                    <td>@previsione.TemperaturaC</td>
+                    <td>@previsione.TemperaturaF</td>
+                    <td>@previsione.Descrizione</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 
 @code {
-    private int currentCount = 0;
-    private int incrementValue = 1;  // valore di default
+    private WeatherForecast[]? previsioni;
 
-    private void IncrementCount()
+    protected override async Task OnInitializedAsync()
     {
-        currentCount += incrementValue;
+        previsioni = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
+    }
+
+    public class WeatherForecast
+    {
+        public DateOnly Data { get; set; }
+
+        public int TemperaturaC { get; set; }
+
+        public string? Descrizione { get; set; }
+
+        public int TemperaturaF => 32 + (int)(TemperaturaC / 0.5556);
     }
 }
