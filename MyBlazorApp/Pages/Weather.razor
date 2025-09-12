@@ -1,57 +1,100 @@
 ﻿@page "/weather"
-@inject HttpClient Http
 
-<PageTitle>Meteo</PageTitle>
+<PageTitle>Tracker Spese</PageTitle>
 
-<h1>Meteo</h1>
+<h1>Le mie spese</h1>
 
-<p>Questo componente dimostra come recuperare dati dal server.</p>
+<p>Questa pagina ti permette di tenere traccia delle tue spese personali.</p>
 
-@if (previsioni == null)
+<div class="mb-3">
+    <label for="descrizione" class="form-label">Descrizione:</label>
+    <input id="descrizione" class="form-control" @bind="descrizione" />
+
+    <label for="categoria" class="form-label mt-2">Categoria:</label>
+    <input id="categoria" class="form-control" @bind="categoria" />
+
+    <label for="importo" class="form-label mt-2">Importo (€):</label>
+    <input id="importo" type="number" class="form-control" @bind="importo" />
+
+    <button class="btn btn-primary mt-3" @onclick="AggiungiSpesa">Aggiungi spesa</button>
+</div>
+
+@if (spese.Any())
 {
-    <p><em>Caricamento...</em></p>
-}
-else
-{
+    <h3>Elenco spese</h3>
     <table class="table">
         <thead>
             <tr>
                 <th>Data</th>
-                <th aria-label="Temperatura in gradi Celsius">Temp. (°C)</th>
-                <th aria-label="Temperatura in gradi Fahrenheit">Temp. (°F)</th>
                 <th>Descrizione</th>
+                <th>Categoria</th>
+                <th>Importo (€)</th>
+                <th>Azioni</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var previsione in previsioni)
+            @foreach (var spesa in spese)
             {
                 <tr>
-                    <td>@previsione.Data.ToShortDateString()</td>
-                    <td>@previsione.TemperaturaC</td>
-                    <td>@previsione.TemperaturaF</td>
-                    <td>@previsione.Descrizione</td>
+                    <td>@spesa.Data.ToShortDateString()</td>
+                    <td>@spesa.Descrizione</td>
+                    <td>@spesa.Categoria</td>
+                    <td>@spesa.Importo.ToString("0.00")</td>
+                    <td>
+                        <button class="btn btn-sm btn-danger" @onclick="@(() => RimuoviSpesa(spesa))">Rimuovi</button>
+                    </td>
                 </tr>
             }
         </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3"><strong>Totale:</strong></td>
+                <td colspan="2"><strong>@spese.Sum(s => s.Importo).ToString("0.00") €</strong></td>
+            </tr>
+        </tfoot>
     </table>
+}
+else
+{
+    <p><em>Nessuna spesa registrata.</em></p>
 }
 
 @code {
-    private PrevisioneMeteo[]? previsioni;
+    private string descrizione = string.Empty;
+    private string categoria = string.Empty;
+    private decimal importo;
 
-    protected override async Task OnInitializedAsync()
+    private List<Spesa> spese = new();
+
+    private void AggiungiSpesa()
     {
-        previsioni = await Http.GetFromJsonAsync<PrevisioneMeteo[]>("sample-data/weather.json");
+        if (!string.IsNullOrWhiteSpace(descrizione) && importo > 0)
+        {
+            spese.Add(new Spesa
+            {
+                Data = DateTime.Today,
+                Descrizione = descrizione,
+                Categoria = categoria,
+                Importo = importo
+            });
+
+            // Reset dei campi
+            descrizione = string.Empty;
+            categoria = string.Empty;
+            importo = 0;
+        }
     }
 
-    public class PrevisioneMeteo
+    private void RimuoviSpesa(Spesa spesa)
     {
-        public DateOnly Data { get; set; }
+        spese.Remove(spesa);
+    }
 
-        public int TemperaturaC { get; set; }
-
-        public string? Descrizione { get; set; }
-
-        public int TemperaturaF => 32 + (int)(TemperaturaC / 0.5556);
+    public class Spesa
+    {
+        public DateTime Data { get; set; }
+        public string Descrizione { get; set; } = string.Empty;
+        public string Categoria { get; set; } = string.Empty;
+        public decimal Importo { get; set; }
     }
 }
