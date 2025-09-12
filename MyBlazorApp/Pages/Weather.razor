@@ -9,7 +9,7 @@
 
 @if (previsioni == null)
 {
-    <p><em>Caricamento in corso...</em></p>
+    <p><em>Caricamento...</em></p>
 }
 else
 {
@@ -17,8 +17,8 @@ else
         <thead>
             <tr>
                 <th>Data</th>
-                <th aria-label="Temperatura in gradi Celsius">Temp. (C)</th>
-                <th aria-label="Temperatura in gradi Fahrenheit">Temp. (F)</th>
+                <th aria-label="Temperatura in gradi Celsius">Temp. (°C)</th>
+                <th aria-label="Temperatura in gradi Fahrenheit">Temp. (°F)</th>
                 <th>Descrizione</th>
             </tr>
         </thead>
@@ -37,14 +37,14 @@ else
 }
 
 @code {
-    private WeatherForecast[]? previsioni;
+    private PrevisioneMeteo[]? previsioni;
 
     protected override async Task OnInitializedAsync()
     {
-        previsioni = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
+        previsioni = await Http.GetFromJsonAsync<PrevisioneMeteo[]>("sample-data/weather.json");
     }
 
-    public class WeatherForecast
+    public class PrevisioneMeteo
     {
         public DateOnly Data { get; set; }
 
